@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /**
+         * 修改标题的方法
+         */
+        function changeTitle(val) {
+            document.getElementById("title").innerHTML = val
+            alert("标题修改成功！")
+        }
+
+        /**
+         * 立即购买
+         */
+        function buy(id) {
+            android.buy(id)
+        }
+
+        function titleNull() {
+            alert("输入框不能为空！")
+        }
+    </script>
+</head>
+
+<body>
+    <div style="align-content: center">
+        
+        <h1 id="title">VIVO x27</h1>
+        <p>
+                零界视野，一握尽享
+                X系列零界全面屏开山之作，超高屏占比勇攀系列高峰。6.39英寸FHD+高清大视野，19.5:9屏幕比例，延伸星辰般宏伟壮阔。红外距离感应器件、光线感应器件巧妙地隐藏起来，让四周黑边再度收窄，视频游戏视野无界，高能体验爽快过人。
+                
+                *屏幕尺寸为按照标准矩形测量的屏幕直角对角线的长度。（实际可视区域略小）
+                了解X27 8GB+128GB版 >
+        </p>
+
+        <button onclick="buy(1001)">立即购买</button>
+    </div>
+</body>
+
+</html>
