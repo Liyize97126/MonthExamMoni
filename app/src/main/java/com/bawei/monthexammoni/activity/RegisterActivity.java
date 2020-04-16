@@ -32,7 +32,7 @@ public class RegisterActivity extends BaseActivity {
         return R.layout.activity_register;
     }
     @Override
-    protected BasePresenter getPresenter() {
+    protected BasePresenter initPresenter() {
         return new RegisterPresenter(new IContact.IView() {
             @Override
             public void requestSuccess(String json) {
@@ -78,7 +78,7 @@ public class RegisterActivity extends BaseActivity {
                         params.put("phone",phone);
                         params.put("pwd",pwd);
                         //发起请求
-                        getPresenter().request(Request.Method.POST,params);
+                        getBasePresenter().request(Request.Method.POST,params);
                     }
                 } else {
                     Toast.makeText(RegisterActivity.this, "找不到网络 (ㄒoㄒ)", Toast.LENGTH_LONG).show();

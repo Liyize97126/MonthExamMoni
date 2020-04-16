@@ -27,7 +27,7 @@ public class WebViewActivity extends BaseActivity {
         return R.layout.activity_web_view;
     }
     @Override
-    protected BasePresenter getPresenter() {
+    protected BasePresenter initPresenter() {
         return null;
     }
     @Override

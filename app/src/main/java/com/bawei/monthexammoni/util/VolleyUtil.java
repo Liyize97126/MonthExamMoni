@@ -45,7 +45,7 @@ public class VolleyUtil {
     public void VolleyRequest(int method, String url, Map<String,String> params, IContact.IModel iModel){
         switch (method){
             case Request.Method.GET: {
-                doGet(url,iModel);
+                doGet(url,params,iModel);
             }break;
             case Request.Method.POST: {
                 doPost(url,params,iModel);
@@ -53,7 +53,20 @@ public class VolleyUtil {
         }
     }
     //Get请求
-    private void doGet(String url, final IContact.IModel iModel){
+    private void doGet(String url, Map<String,String> params, final IContact.IModel iModel){
+        //拼接参数
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("?");
+        //Map容器遍历（转Set集合）
+        for (String key : params.keySet()) {
+            //去拼接每个参数
+            buffer.append(key + "=" + params.get(key) + "&");
+        }
+        //去截取，目的是去掉最后末尾的“&”符号
+        String substring = buffer.substring(0, buffer.length() - 1);
+        //完成最终网址拼接
+        url = url + substring;
+        //发起请求
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

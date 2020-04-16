@@ -19,13 +19,13 @@ public abstract class BasePresenter {
         this.iView = iView;
     }
     //提供请求方法
-    public void request(int method, Map<String,String> params,String...args){
+    public void request(int method, Map<String,String> params){
         if(method == Request.Method.GET){
             Log.i("Tag","执行了GET请求！");
         } else {
             Log.i("Tag","执行了POST请求！");
         }
-        VolleyUtil.getVolleyUtil().VolleyRequest(method, getUrl(args), params, new IContact.IModel() {
+        VolleyUtil.getVolleyUtil().VolleyRequest(method, getUrl(), params, new IContact.IModel() {
             @Override
             public void requestSuccess(String json) {
                 iView.requestSuccess(json);
@@ -37,7 +37,7 @@ public abstract class BasePresenter {
         });
     }
     //方法封装
-    protected abstract String getUrl(String...args);
+    protected abstract String getUrl();
     //释放资源
     public void destroy(){
         if(iView != null){

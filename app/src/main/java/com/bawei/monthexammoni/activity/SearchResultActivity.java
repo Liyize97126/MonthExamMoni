@@ -20,6 +20,11 @@ import com.bawei.monthexammoni.presenter.SearchPresenter;
 import com.bawei.monthexammoni.util.MyApplication;
 import com.bawei.monthexammoni.util.VolleyUtil;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 搜索结果展示
  */
@@ -29,13 +34,14 @@ public class SearchResultActivity extends BaseActivity {
     private Button submit_search;
     private RecyclerView search_result_show;
     private GoodsSearchResultListAdapter goodsSearchResultListAdapter;
+    private Map<String,String> params;
     //方法实现
     @Override
     protected int getLayoutId() {
         return R.layout.activity_search_result;
     }
     @Override
-    protected BasePresenter getPresenter() {
+    protected BasePresenter initPresenter() {
         return new SearchPresenter(new IContact.IView() {
             @Override
             public void requestSuccess(String json) {
@@ -107,7 +113,17 @@ public class SearchResultActivity extends BaseActivity {
         //网络判断
         if(VolleyUtil.getVolleyUtil().hasNet()){
             goodsSearchResultListAdapter.getList().clear();
-            getPresenter().request(Request.Method.GET,null,searchText,"1","30");
+            //汉字编码
+            try {
+                String encode = URLEncoder.encode(searchText, "UTF-8");
+                params = new HashMap<>();
+                params.put("keyword",encode);
+                params.put("page","1");
+                params.put("count","50");
+                getBasePresenter().request(Request.Method.GET,params);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         } else {
             Toast.makeText(SearchResultActivity.this, "找不到网络 (ㄒoㄒ)", Toast.LENGTH_LONG).show();
         }

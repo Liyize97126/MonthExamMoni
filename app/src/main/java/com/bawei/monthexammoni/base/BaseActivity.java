@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public abstract class BaseActivity extends AppCompatActivity {
     //定义
     private BasePresenter basePresenter;
+    public BasePresenter getBasePresenter() {
+        return basePresenter;
+    }
     private ActionBar actionBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,13 +25,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.hide();
         //Presenter实例化
-        basePresenter = getPresenter();
+        basePresenter = initPresenter();
         //处理视图数据
         initView();
     }
     //方法封装
     protected abstract int getLayoutId();
-    protected abstract BasePresenter getPresenter();
+    protected abstract BasePresenter initPresenter();
     protected abstract void initView();
     //页面销毁方法
     @Override

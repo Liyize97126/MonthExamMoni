@@ -37,7 +37,9 @@ public class MyException implements Thread.UncaughtExceptionHandler {
                 "错误信息：" + message + "\n" +
                 "错误详情：\n");
         e.printStackTrace();
-        System.exit(1);
+        //捕获异常后，优雅退出
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(10);
     }
     //获取应用版本号
     public static int packageCode(Context context) {

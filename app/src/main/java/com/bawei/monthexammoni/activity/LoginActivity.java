@@ -35,7 +35,7 @@ public class LoginActivity extends BaseActivity {
         return R.layout.activity_login;
     }
     @Override
-    protected BasePresenter getPresenter() {
+    protected BasePresenter initPresenter() {
         return new LoginPresenter(new IContact.IView() {
             @Override
             public void requestSuccess(String json) {
@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity {
                         params.put("phone",phone);
                         params.put("pwd",pwd);
                         //发起请求
-                        getPresenter().request(Request.Method.POST,params);
+                        getBasePresenter().request(Request.Method.POST,params);
                     }
                 } else {
                     Toast.makeText(LoginActivity.this, "找不到网络 (ㄒoㄒ)", Toast.LENGTH_LONG).show();

@@ -12,7 +12,7 @@ public class RegisterPresenter extends BasePresenter {
         super(iView);
     }
     @Override
-    protected String getUrl(String... args) {
+    protected String getUrl() {
         return "http://mobile.bwstudent.com/small/user/v1/register";
     }
 }

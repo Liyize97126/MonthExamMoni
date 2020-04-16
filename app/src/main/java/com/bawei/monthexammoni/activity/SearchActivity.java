@@ -25,7 +25,7 @@ public class SearchActivity extends BaseActivity {
         return R.layout.activity_search;
     }
     @Override
-    protected BasePresenter getPresenter() {
+    protected BasePresenter initPresenter() {
         return null;
     }
     @Override
